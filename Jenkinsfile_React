@@ -5,6 +5,8 @@ pipeline {
   
     environment{
         AppName = ''
+        userEmail = 'ranjit.swain@marlinbluetech.com'
+        userName = 'Ranjit Swain'
         branch = 'master'
         repoURL = 'https://github.com/marlinbluetech/mbgheri.git'
     }
