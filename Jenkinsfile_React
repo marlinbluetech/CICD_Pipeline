@@ -4,7 +4,7 @@ pipeline {
     agent {label 'reactDev'}
   
     environment{
-        AppName = ''
+        appName = ''
         userEmail = 'ranjit.swain@marlinbluetech.com'
         userName = 'Ranjit Swain'
         branch = 'master'
