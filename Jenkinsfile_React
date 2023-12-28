@@ -19,20 +19,20 @@ pipeline {
                 }
             }
         }
-        stage('Build React App'){
+        /*stage('Build React App'){
             steps{
                 script{
-                    //build.react()
+                    build.react()
                 }
             }
-        }
-        stage('Upload To Nexus'){
+        }*/
+        /*stage('Upload To Nexus'){
             steps{
                 script{
-                    //upload.nexus()
+                    upload.nexus()
                 }
             }
-        }
+        }*/
         stage('Deploy'){
           // Execute the Ansible playbook
             steps{
