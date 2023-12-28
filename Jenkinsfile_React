@@ -12,13 +12,13 @@ pipeline {
     }
 
     stages{
-        /*stage('Push To GitHub Repo'){
+        stage('Push To GitHub Repo'){
             steps{
                 script{
                     gitCheckout.push2Remote()
                 }
             }
-        }*/
+        }
         stage('Build React App'){
             steps{
                 script{
