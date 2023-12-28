@@ -1,0 +1,45 @@
+@Library('My-Jenkins-SharedLibrary') _
+
+pipeline {
+    agent {label 'reactDev'}
+  
+    environment{
+        AppName = ''
+        branch = 'master'
+        repoURL = 'https://github.com/marlinbluetech/mbgheri.git'
+    }
+
+    stages{
+        stage('Push To GitHub Repo'){
+            steps{
+                script{
+                    gitCheckout.push2Remote()
+                }
+            }
+        }
+        stage('Build React App'){
+            steps{
+                script{
+                    //build.react()
+                }
+            }
+        }
+        stage('Upload To Nexus'){
+            steps{
+                script{
+                    //upload.nexus()
+                }
+            }
+        }
+        stage('Deploy'){
+          // Execute the Ansible playbook
+            steps{
+                script{
+                    bat '''
+                      echo "Execute Ansible"
+                    '''
+                }
+            }
+        }
+    }
+}
