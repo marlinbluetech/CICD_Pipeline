@@ -12,20 +12,20 @@ pipeline {
     }
 
     stages{
-        stage('Push To GitHub Repo'){
+        /*stage('Push To GitHub Repo'){
             steps{
                 script{
                     gitCheckout.push2Remote()
                 }
             }
-        }
-        /*stage('Build React App'){
+        }*/
+        stage('Build React App'){
             steps{
                 script{
                     build.react()
                 }
             }
-        }*/
+        }
         /*stage('Upload To Nexus'){
             steps{
                 script{
