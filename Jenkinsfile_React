@@ -9,6 +9,18 @@ pipeline {
         userName = 'Ranjit Swain'
         branch = 'master'
         repoURL = 'https://github.com/marlinbluetech/mbgheri.git'
+
+       // This can be nexus3 or nexus2
+        NEXUS_VERSION = "nexus3"
+        // This can be http or https
+        NEXUS_PROTOCOL = "http"
+        // Where your Nexus is running
+        NEXUS_URL = "nexus.marlinbluetech.com:8081"
+        // Repository where we will upload the artifact
+        NEXUS_REPOSITORY = "mbgheri"
+        // Jenkins credential id to authenticate to Nexus OSS
+        NEXUS_CREDENTIAL_ID = "nexusCredential"
+        ARTIFACT_VERSION = "${BUILD_NUMBER}"
     }
 
     stages{
@@ -26,13 +38,13 @@ pipeline {
                 }
             }
         }
-        /*stage('Upload To Nexus'){
+        stage('Upload To Nexus'){
             steps{
                 script{
-                    upload.nexus()
+                    nexusUpload()
                 }
             }
-        }*/
+        }
         stage('Deploy'){
           // Execute the Ansible playbook
             steps{
