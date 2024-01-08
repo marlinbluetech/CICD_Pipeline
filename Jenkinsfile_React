@@ -60,7 +60,17 @@ pipeline {
         stage('Upload To Nexus'){
             steps{
                 script{
-                    nexusUpload()
+                    //nexusUpload()
+                    sh """
+                        curl -X 'POST' \
+                        'http://nexus.marlinbluetech.com:8081/service/rest/v1/components?repository=mbgheri' \
+                        -H 'accept: application/json' \
+                        -H 'Content-Type: multipart/form-data' \
+                        -H 'Authorization: Basic YWRtaW46YWRtaW4xMjMK' \
+                        -F 'raw.directory=mbgheri' \
+                        -F 'raw.asset1=@"${WORKSPACE}/${appName}-${BUILD_NUMBER}.zip";type=application/x-zip-compressed' \
+                        -F 'raw.asset1.filename=${appName}-${BUILD_NUMBER}.zip'
+                    """
                 }
             }
         }
