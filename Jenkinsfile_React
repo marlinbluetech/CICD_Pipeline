@@ -42,6 +42,10 @@ pipeline {
             steps{
                 script{
                     gitCheckout.checkout()
+                    //Extract the zip file
+                    bat """
+                        powershell Expand-Archive -Path "${WORKSPACE}/${appName}-${BUILD_NUMBER}.zip" -DestinationPath "${WORKSPACE}/build/" -Force
+                    """
                 }
             }
         }
