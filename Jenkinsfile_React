@@ -18,15 +18,15 @@ pipeline {
     }
 
     stages{
-        stage('Build React App'){
+        /*stage('Build React App'){
             agent {label 'reactDev'}
             steps{
                 script{
                     build.react()
                 }
             }
-        }
-        stage('Push To GitHub Repo'){
+        }*/
+        /*stage('Push To GitHub Repo'){
             agent {label 'reactDev'}
             steps{
                 script{
@@ -37,8 +37,8 @@ pipeline {
                     """
                 }
             }
-        }
-        stage('Checkout'){
+        }*/
+        /*stage('Checkout'){
             steps{
                 script{
                     gitCheckout.checkout()
@@ -48,7 +48,7 @@ pipeline {
                     """
                 }
             }
-        }
+        }*/
         stage('Deploy'){
             steps{
                 script{
