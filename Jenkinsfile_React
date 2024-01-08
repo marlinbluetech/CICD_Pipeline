@@ -10,6 +10,12 @@ pipeline {
         branch = 'master'
         repoURL = 'https://github.com/marlinbluetech/mbgheri.git'
 
+        //Deploy
+        userid = 'root'
+        environ = 'dev'
+        server = 'test.marlinbluetech.com'
+        deployPath = '/var/www/test.marlinbluetech.com/html/'
+
        // This can be nexus3 or nexus2
         NEXUS_VERSION = "nexus3"
         // This can be http or https
