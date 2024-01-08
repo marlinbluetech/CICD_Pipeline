@@ -15,18 +15,6 @@ pipeline {
         environ = 'dev'
         server = 'test.marlinbluetech.com'
         deployPath = '/var/www/test.marlinbluetech.com/html/'
-
-       // This can be nexus3 or nexus2
-        NEXUS_VERSION = "nexus3"
-        // This can be http or https
-        NEXUS_PROTOCOL = "http"
-        // Where your Nexus is running
-        NEXUS_URL = "3.110.212.151:8081"
-        // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "mbgheri"
-        // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "nexusCredential"
-        ARTIFACT_VERSION = "${BUILD_NUMBER}"
     }
 
     stages{
@@ -57,30 +45,10 @@ pipeline {
                 }
             }
         }
-        stage('Upload To Nexus'){
-            steps{
-                script{
-                    //nexusUpload()
-                    sh """
-                        curl -X 'POST' \
-                        'http://nexus.marlinbluetech.com:8081/service/rest/v1/components?repository=mbgheri' \
-                        -H 'accept: application/json' \
-                        -H 'Content-Type: multipart/form-data' \
-                        -H 'Authorization: Basic YWRtaW46YWRtaW4xMjMK' \
-                        -F 'raw.directory=mbgheri' \
-                        -F 'raw.asset1=@"${WORKSPACE}/${appName}-${BUILD_NUMBER}.zip";type=application/x-zip-compressed' \
-                        -F 'raw.asset1.filename=${appName}-${BUILD_NUMBER}.zip'
-                    """
-                }
-            }
-        }
         stage('Deploy'){
-          // Execute the Ansible playbook
             steps{
                 script{
-                    bat '''
-                      echo "Execute Ansible"
-                    '''
+                    deploy.react()
                 }
             }
         }
