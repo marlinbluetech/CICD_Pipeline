@@ -1,7 +1,7 @@
 @Library('Jenkins-SharedLibrary') _
 
 pipeline {
-    agent {label 'reactDev'}
+    agent {label 'Built-In'}
   
     environment{
         appName = 'mbgheri'
@@ -30,17 +30,26 @@ pipeline {
     }
 
     stages{
+        stage('Build React App'){
+            agent {label 'reactDev'}
+            steps{
+                script{
+                    build.react()
+                }
+            }
+        }
         stage('Push To GitHub Repo'){
+            agent {label 'reactDev'}
             steps{
                 script{
                     gitCheckout.push2Remote()
                 }
             }
         }
-        stage('Build React App'){
+        stage('Checkout'){
             steps{
                 script{
-                    build.react()
+                    gitCheckout.checkout()
                 }
             }
         }
