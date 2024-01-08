@@ -18,15 +18,15 @@ pipeline {
     }
 
     stages{
-        /*stage('Build React App'){
+        stage('Build React App'){
             agent {label 'reactDev'}
             steps{
                 script{
                     build.react()
                 }
             }
-        }*/
-        /*stage('Push To GitHub Repo'){
+        }
+        stage('Push To GitHub Repo'){
             agent {label 'reactDev'}
             steps{
                 script{
@@ -37,18 +37,18 @@ pipeline {
                     """
                 }
             }
-        }*/
-        /*stage('Checkout'){
+        }
+        stage('Checkout'){
             steps{
                 script{
                     gitCheckout.checkout()
-                    //Extract the zip file
+
                     sh """
-                        unzip -o ${appName}-${BUILD_NUMBER}.zip -d build
+                        unzip -o "${appName}-${BUILD_NUMBER}.zip" -d build
                     """
                 }
             }
-        }*/
+        }
         stage('Deploy'){
             steps{
                 script{
